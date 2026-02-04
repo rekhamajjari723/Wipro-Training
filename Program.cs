@@ -1,157 +1,99 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using System;
+using System.Collections;
 
 Console.WriteLine("Hello, World!");
+//using Day_2_Demo2_OMS_Colelctions_IN_C_Sharp;
+//using System.Collections;
 
-// arrays
+Console.WriteLine("getting started with arrays and collection in C# ...!!!");
 
-int[] num = new int[5];
-num[0] = 10;
-num[1] = 20;
-num[2] = 30;
-num[3] = 40;
-num[4] = 50;
-for(int i=0;i<num.Length;i++)
+//here is the implemetation of None generic collection as per Order management sysytem
+//Step 1: Create a class to represent an Order or any type of item we want to store in the collection
+//Step 2: Create a class for the None generic collection
+//Step 3: Implement methods to add, remove, and retrieve items from the collection
+//Step 4: Test the collection with different types of items
+//Step 5: Display the items in the collection using a loop
+
+
+//here is a simple implementation of a None generic collection in C#
+
+//Creating a non generic collection class array list to store different types of orders
+
+
+Console.WriteLine("Non Generic Collection Implementation");
+ArrayList orderCollection = new ArrayList();
+orderCollection.Add("laptop");//adding string type item
+Console.WriteLine("total no of elelemnt in the collection " + orderCollection.Count);
+Console.WriteLine("Right now the memory of collection is " + orderCollection.Capacity);
+orderCollection.Add(12345);//adding integer type item
+orderCollection.Add(99.99);//adding double type item
+Console.WriteLine("total no of elelemnt in the collection " + orderCollection.Count);
+Console.WriteLine("Right now the memory of collection is " + orderCollection.Capacity);
+orderCollection.Add(new DateTime(2024, 6, 1));//adding DateTime type item
+orderCollection.Add(true);//adding boolean type item
+Console.WriteLine("total no of elelemnt in the collection " + orderCollection.Count);
+Console.WriteLine("Right now the memory of collection is " + orderCollection.Capacity);
+orderCollection.Add('A');//adding char type item
+Console.WriteLine("total no of elelemnt in the collection " + orderCollection.Count);
+
+Console.WriteLine("Right now the memory of collection is " + orderCollection.Capacity);
+
+
+//displaying the items in the collection
+
+Console.WriteLine("Items in the Order Collection:");
+foreach (var item in orderCollection)
 {
-    Console.WriteLine("element at index " + i + ":" + num[i]);
-    //Console.WriteLine(Array.Sort(num));
-  
-
+    Console.WriteLine(item);
 }
 
-// performing different operations on array
-//Array.Sort(num);
-//Array.Reverse(num);
-//Array.IndexOf(num, 40);
+//Above collection is of non generic type as it can store different types of items as well as the size is also dynamic 
+//i.e it can grow and shrink as per the requirement.
 
-
-
-
-// performing string
-String[] movies = { "dootha", "leo", "dammu","rebal","hanu","nayudu"};
-for(int i = 0; i < movies.Length; i++)
+// For displaying the type of each item in the collection
+Console.WriteLine("Items in the Order Collection with their types:");
+foreach (var item in orderCollection)
 {
-    Console.WriteLine("movies" + "=" + movies[i]);
-}
-Console.WriteLine("movie count" + "= " + movies.Count());
-Console.WriteLine("movie index value" + "= " + movies.IndexOf("leo"));
-
-
-// array types
-//Getting started with 2D Arrays in C#
-//Step 1: Declare a 2D array of type int syntax : dataType[,] arrayName = new dataType[rows, columns];
-//Step 2: Initialize the 2D array with values
-int[,] matrix = new int[3, 3] //3 rows and 3 columns
-{
-    {1, 2, 3}, //Row 0
-    {4, 5, 6}, //Row 1
-    {7, 8, 9}  //Row 2
-};
-Console.WriteLine("created a 2D array !!");
-//step 3: using nested loop
-for (int i = 0; i < matrix.GetLength(0); i++) // rows
-{
-    for (int j = 0; j < matrix.GetLength(1); j++) // columns
-    {
-        Console.Write(matrix[i, j] + " ");
-    }
-    Console.WriteLine();
-}
-
-
-
-
-
-
-
-//jagged Arrays in C# : where each element is an array itself ex
-//Arrays  of arrays , specific rows can have different number of columns
-//Biggest benefit : memory efficiency when dealing with non-uniform data ex
-// a table where each row represents a different entity with varying attributes in case of e commerce products
-//Step 1: Declare a jagged array
-//Step 2: Initialize each row with different sizes
-//Step 3: Print the values of the jagged array using nested for loops
-//hence we use jagged arrays when we have non uniform data to save memory over a 2D array,
-//where all rows must have same number of columns
-
-
-
-int[][] jaggedArray = new int[3][];
-// Step 2: Initialize each row with different sizes
-jaggedArray[0] = new int[] { 1, 2 };              // Row 0 has 2 elements
-jaggedArray[1] = new int[] { 3, 4, 5 };           // Row 1 has 3 elements
-jaggedArray[2] = new int[] { 6, 7, 8, 9 };        // Row 2 has 4 elements
-
-Console.WriteLine("created a jagged array !!");
-// Step 3: Print values using nested for loops
-for (int i = 0; i < jaggedArray.Length; i++)      // Loop through rows
-{
-    for (int j = 0; j < jaggedArray[i].Length; j++) // Loop through columns
-    {
-        Console.Write(jaggedArray[i][j] + " ");
-    }
-    Console.WriteLine(); // Move to next row
+    Console.WriteLine($"{item} - Type: {item.GetType()}");
 }
 
 
 
+//Above collection can be made generic by using List<T> instead of ArrayList
+Console.WriteLine("Generic Collection Implementation");
+List<string> genericOrderCollection = new List<string>();//only string type items can be stored in this collection
+genericOrderCollection.Add("laptop");
+genericOrderCollection.Add("mobile");
+genericOrderCollection.Add("tablet");
+genericOrderCollection.Add(12345.ToString());//This line will cause a compile-time error as we are trying to add an integer to a string collection
 
-//Case study : Using Arrays to Manage Student Grades
-//if i want to store marks of students in different subjects: "Subject wise marks for each student"
-//Step 1: Declare a 2D array to store marks of 3 students in 4 subjects
-//Step 2: Initialize the array with sample marks
-//Step 3: Calculate and print the average marks for each student
-//Step 4: Calculate and print the average marks for each subject
-//Step 5: Find and print the highest and lowest marks in the class
-// Syntax for declaraing  2D array as per above  sceanrio is 
-// dataType[,] arrayName = new dataType[rows, columns];
-
-
-int[,] sample_marks = new int[3, 4] //3 rows and 3 columns
+Console.WriteLine("total no of elelemnt in the generic collection " + genericOrderCollection.Count);
+Console.WriteLine("Right now the memory of generic collection is " + genericOrderCollection.Capacity);
+//displaying the items in the generic collection
+Console.WriteLine("Items in the Generic Order Collection:");
+foreach (var item in genericOrderCollection)
 {
-    {80, 75, 90,70}, //Row 0
-    {40, 50, 60, 80}, //Row 1
-    {70, 80, 90,70}  //Row 2
-};
-int students = sample_marks.GetLength(0); // rows
-int subjects = sample_marks.GetLength(1); // columns
-
-// Step 3: Average marks per student
-Console.WriteLine("Average marks per student:");
-for (int i = 0; i < students; i++)
-{
-    int sum = 0;
-    for (int j = 0; j < subjects; j++)
-        sum += sample_marks[i, j];
-
-    double avg = (double)sum / subjects;
-    Console.WriteLine($"Student {i + 1}: {avg}");
+    Console.WriteLine(item);
 }
-// Step 4: Average marks per subject
-Console.WriteLine("\nAverage marks per subject:");
-for (int j = 0; j < subjects; j++)
-{
-    int sum = 0;
-    for (int i = 0; i < students; i++)
-        sum += sample_marks[i, j];
+//Above collection is of generic type as it can store only string type items as well as the size is also dynamic
 
-    double avg = (double)sum / students;
-    Console.WriteLine($"Subject {j + 1}: {avg}");
-}
-int highest = sample_marks[0, 0];
-int lowest = sample_marks[0, 0];
-
-for (int i = 0; i < students; i++)
-{
-    for (int j = 0; j < subjects; j++)
-    {
-        if (sample_marks[i, j] > highest) highest = sample_marks[i, j];
-        if (sample_marks[i, j] < lowest) lowest = sample_marks[i, j];
-    }
-}
-
-Console.WriteLine($"\nHighest mark in class: {highest}");
-Console.WriteLine($"Lowest mark in class: {lowest}");
+//In case of order management sysytem it is better to use generic collection as it
+//provides type safety and better performance.
+//Step 1: Create a class to represent an Order
 
 
+//Step 2: Create a generic collection to store Order objects
 
+
+//List<Order> orderList = new List<Order>();
+
+////Adding some sample orders to the collection
+//orderList.Add(new Order { OrderId = 1, ProductName = "Laptop", Quantity = 2, Price = 1500.00 });
+//orderList.Add(new Order { OrderId = 2, ProductName = "Mobile", Quantity = 5, Price = 800.00 });
+
+////displaying the orders in the collection
+//Console.WriteLine("Orders in the Order Collection:");
+//foreach (var order in orderList)
+//{
+//    Console.WriteLine(order);
+//}
